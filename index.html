@@ -91,36 +91,37 @@
     .results-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 2px 13px; }
     .results-row h2 { margin: 0; color: var(--navy); font-size: 1.14rem; }
     .results-count { color: var(--text-muted); font-size: .82rem; }
-    .job-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .job-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .job-section-label { grid-column: 1 / -1; margin: 8px 0 -6px; color: var(--navy); font-size: 1rem; }
     .job-card {
-      display: flex; flex-direction: column; min-width: 0; padding: 21px;
-      border: 1px solid var(--border-soft); border-radius: 16px;
+      display: flex; flex-direction: column; min-width: 0; padding: 16px;
+      border: 1px solid var(--border-soft); border-radius: 13px;
       background: var(--white); box-shadow: var(--shadow);
     }
     .job-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
     .job-code { margin: 0 0 5px; color: var(--pink); font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-    .job-card h3 { margin: 0; color: var(--navy); font-size: 1.12rem; line-height: 1.35; }
+    .job-card h3 { margin: 0; color: var(--navy); font-size: 1rem; line-height: 1.32; }
     .status { flex: 0 0 auto; padding: 4px 9px; border: 1px solid #b8dfcc; border-radius: 99px; background: #effaf4; color: var(--success); font-size: .7rem; font-weight: 600; }
     .job-card.closed { filter: grayscale(1); opacity: .76; }
     .job-card.closed .status { border-color: #a7a7a7; background: #ececec; color: #333; }
-    .commission-panel { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 5px 14px; margin: 14px 0 2px; padding: 12px 14px; border: 1px solid #b8dfcc; border-radius: 12px; background: #effaf4; color: #176b48; }
-    .commission-main { display: flex; align-items: baseline; gap: 8px; }
-    .commission-label { font-size: .76rem; font-weight: 600; }
-    .commission-amount { font-size: 1.12rem; font-weight: 700; }
-    .commission-details { width: 100%; margin: 0; color: #176b48; font-size: .75rem; }
+    .commission-panel { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin: 10px 0 2px; padding: 8px 10px; border: 0; border-radius: 10px; background: #f2fbf7; color: #07865f; }
+    .commission-main { display: contents; }
+    .commission-label { flex: 0 0 auto; padding: 3px 8px; border: 1px solid #91e3c5; border-radius: 999px; background: #e8fff5; color: #00865f; font-size: .62rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+    .commission-amount { min-width: 0; color: #00865f; font-size: .96rem; font-weight: 700; overflow-wrap: anywhere; }
+    .commission-details { margin: 0; color: #82918b; font-size: .7rem; }
     .client-line { margin: 8px 0 0; color: var(--text-muted); font-size: .82rem; }
-    .facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 12px; }
-    .fact { padding: 5px 9px; border: 1px solid #eadde9; border-radius: 999px; background: #fbf7fb; color: #514b5b; font-size: .73rem; }
-    .job-summary { margin: 0; color: var(--text-muted); font-size: .85rem; }
-    .skills { margin: 13px 0 0; }
+    .facts { display: flex; flex-wrap: wrap; gap: 6px; margin: 11px 0 9px; }
+    .fact { padding: 4px 8px; border: 1px solid #eadde9; border-radius: 999px; background: #fbf7fb; color: #514b5b; font-size: .73rem; }
+    .job-summary { margin: 0; color: var(--text-muted); font-size: .8rem; }
+    .skills { margin: 9px 0 0; }
     .skills-label { display: block; margin-bottom: 6px; color: var(--navy-soft); font-size: .74rem; font-weight: 600; }
     .skills-list { display: flex; flex-wrap: wrap; gap: 6px; }
     .skill { padding: 4px 8px; border-radius: 6px; background: #fbe3ee; color: #7a2946; font-size: .7rem; }
-    .job-meta { display: flex; justify-content: space-between; gap: 8px; margin-top: auto; padding-top: 16px; color: #777181; font-size: .7rem; }
-    .job-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 14px; }
+    .job-meta { display: flex; justify-content: space-between; gap: 8px; margin-top: auto; padding-top: 11px; color: #777181; font-size: .7rem; }
+    .job-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
     .button {
-      display: inline-flex; min-height: 42px; align-items: center; justify-content: center; gap: 8px;
-      padding: 9px 15px; border: 1px solid transparent; border-radius: 999px;
+      display: inline-flex; min-height: 38px; align-items: center; justify-content: center; gap: 8px;
+      padding: 7px 12px; border: 1px solid transparent; border-radius: 999px;
       background: linear-gradient(135deg, var(--pink), var(--navy-soft)); color: #fff;
       font-size: .8rem; font-weight: 600; text-decoration: none; cursor: pointer;
       transition: transform .15s ease, box-shadow .2s ease;
@@ -152,7 +153,7 @@
       .hero { padding: 39px 0 27px; }
       .toolbar { grid-template-columns: 1fr; padding: 13px; }
       .field:first-child { grid-column: auto; }
-      .job-card { padding: 17px; }
+      .job-card { padding: 14px; }
       .job-actions .button { flex: 1 1 130px; }
       .help-panel { grid-template-columns: 1fr; }
       .help-panel .button { justify-self: start; }
@@ -207,7 +208,7 @@
 
     <section aria-labelledby="openingsHeading">
       <div class="results-row">
-        <h2 id="openingsHeading">Active positions</h2>
+        <h2 id="openingsHeading">Positions</h2>
         <span class="results-count" id="resultsCount" aria-live="polite"></span>
       </div>
       <div class="job-grid" id="jobGrid"></div>
@@ -246,6 +247,7 @@
         summary: "Manage a portfolio and acquire new banking relationships.",
         skills: ["Retail banking", "Customer acquisition", "Portfolio management"],
         maxEarn: "₹[total payout cap]",
+        commissionRate: 5, // Edit this percentage for the opening
         perJoiningReward: "₹[amount per joining]",
         status: "open", // Use "closed" to show this role as closed
         jdUrl: "jds/TH-001-relationship-manager.pdf",
@@ -266,6 +268,7 @@
         summary: "DSA for Home Loan & LAP. Responsible for acquiring new customers and managing existing relationships.",
         skills: ["Home Loan", "LAP", "Customer acquisition"],
         maxEarn: "IF CTC < 3.25 LPA: ₹ 1500 | IF CTC > 3.26 LPA: MAX earn ₹ 7500",
+        commissionRate: 2,
         perJoiningReward: "",
         status: "open",
         jdUrl: "./jds/JD_RM-MOTILAL.pdf",
@@ -284,6 +287,7 @@
         summary: "The ideal candidate should have strong experience in team handling, sales management, customer acquisition, and business development, preferably from the Life Insurance.",
         skills: ["Branch Management , Team Handling , Sales Management "],
         maxEarn: "₹ 14250/-",
+        commissionRate: 1.5,
         perJoiningReward: "",
         status: "open",
         jdUrl: "./jds/JD_BRANCH MANAGER_GCLI.pdf",
@@ -296,14 +300,15 @@
         location: " Hyderabad",
         function: "Sales & Team Management",
         experience: "Minimum 1+ Years in Team Handling in Home Loan & LAP",
-        salary: "₹ Upto 9.5 LPA",
+        salary: "₹ Upto 7.5 LPA",
         vacancies: 2,
         updated: "2026-10-07",
         summary: "Responsible for setting up and managing new branches, driving sales targets, ensuring profitability, and maintaining strong customer/developer relationships. The role also includes team training, development, and effective branch administration.",
         skills: ["Branch Management , Team Handling , Sales Management "],
         maxEarn: "₹ 15000/-",
+        commissionRate: 2,
         perJoiningReward: "",
-        status: "open ",
+        status: "open",
         jdUrl: "./jds/JD_Branch Sales Manager_Motilal.pdf",
         candidateFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSffv-FgQqr-mt-ZYmuiT0ZHZgBoCDQq0c7-abHm6GJZ-0A72g/viewform?usp=publish-editor"
       },
@@ -315,13 +320,14 @@
         function: "Sales , DSA handling",
         experience: "This is Individual role, Candidate must have LAP knowledge & DSA handling experience.",
         salary: "₹ 5 - 10 LPA",
-        vacancies: 10,
+        vacancies: 5,
         updated: "2026-10-07",
         summary: "Required profile from LAP background only, we have 6 Gap in Chennai T Nagar and need profile max 45 to 60 of NP guys 90 days NP will not be accepted.",
         skills: ["LAP, Loan Against Property , Mortgage , Sales , DSA "],
         maxEarn: "₹ 15000/-",
+        commissionRate: 1.5,
         perJoiningReward: "",
-        status: "open ",
+        status: "open",
         jdUrl: "./jds/Sales Manager – Micro LAP - SMFG.pdf",
         candidateFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSffv-FgQqr-mt-ZYmuiT0ZHZgBoCDQq0c7-abHm6GJZ-0A72g/viewform?usp=publish-editor"
       },
@@ -338,8 +344,9 @@
         summary: "Need a Credit Manager with 3–5 years of NBFC corporate underwriting/wholesale lending experience, strong in credit evaluation and financial analysis. CA/MBA preferred; Mumbai, ₹10–13 LPA.",
         skills: ["Underwriting , Wholesale Lending , corporate lending "],
         maxEarn: "₹ 19500/-",
+        commissionRate: 1.5,
         perJoiningReward: "",
-        status: "open ",
+        status: "open",
         jdUrl: "./jds/JD_Credit Manager – Wholesale Lending.pdf",
         candidateFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSffv-FgQqr-mt-ZYmuiT0ZHZgBoCDQq0c7-abHm6GJZ-0A72g/viewform?usp=publish-editor"
       }
@@ -378,7 +385,7 @@
       const jdUrl = safeUrl(job.jdUrl);
       const formUrl = safeUrl(job.candidateFormUrl);
       const isClosed = String(job.status || "open").toLowerCase() === "closed";
-      const commission = job.maxEarn ? `<div class="commission-panel"><div class="commission-main"><span class="commission-label">Max earn</span><strong class="commission-amount">${escapeHtml(job.maxEarn)}</strong></div><p class="commission-details">Total payout cap for this position${job.perJoiningReward ? ` · ${escapeHtml(job.perJoiningReward)} per successful joining, paid as each candidate joins` : ""}</p></div>` : "";
+      const commission = job.maxEarn ? `<div class="commission-panel" aria-label="Recruiter commission"><div class="commission-main"><span class="commission-label">Max earn</span><strong class="commission-amount">${escapeHtml(job.maxEarn)}</strong></div>${Number.isFinite(Number(job.commissionRate)) && Number(job.commissionRate) > 0 ? `<p class="commission-details">· ${escapeHtml(job.commissionRate)}% per candidate placed</p>` : ""}</div>` : "";
       const skills = (job.skills || []).map(skill => `<span class="skill">${escapeHtml(skill)}</span>`).join("");
       const facts = [job.location, job.experience && `Experience: ${job.experience}`, job.salary && `CTC: ${job.salary}`, job.vacancies && `${job.vacancies} opening${job.vacancies === 1 ? "" : "s"}`]
         .filter(Boolean).map(fact => `<span class="fact">${escapeHtml(fact)}</span>`).join("");
@@ -409,8 +416,16 @@
         return (!query || searchable.includes(query)) && (!city || job.location === city) && (!area || job.function === area);
       });
       resultsCount.textContent = `${filtered.length} position${filtered.length === 1 ? "" : "s"}`;
+      const active = filtered.filter(job => String(job.status || "open").toLowerCase() !== "closed");
+      const closed = filtered.filter(job => String(job.status || "open").toLowerCase() === "closed");
+      const activeSection = active.length
+        ? `<h3 class="job-section-label">Active positions</h3>${active.map(jobCard).join("")}`
+        : "";
+      const closedSection = closed.length
+        ? `<h3 class="job-section-label">Closed positions</h3>${closed.map(jobCard).join("")}`
+        : "";
       jobGrid.innerHTML = filtered.length
-        ? filtered.map(jobCard).join("")
+        ? activeSection + closedSection
         : `<div class="empty-state"><h3>${openings.length ? "No matching positions" : "Open positions will appear here"}</h3><p>${openings.length ? "Try another search or clear a filter." : "Please check back for current BFSI requirements. Contact the TalentHub team if you need assistance."}</p></div>`;
     }
     populateFilters();
@@ -421,4 +436,9 @@
   </script>
 </body>
 </html>
+
+
+
+
+
 
