@@ -166,10 +166,7 @@
       }
       .toolbar {
         display: grid;
-        grid-template-columns: minmax(220px, 1.6fr) repeat(
-            2,
-            minmax(150px, 0.7fr)
-          );
+        grid-template-columns: minmax(220px, 1.6fr) repeat(3, minmax(135px, 0.7fr));
         gap: 12px;
         margin-bottom: 20px;
         padding: 16px;
@@ -272,11 +269,34 @@
         font-size: 0.7rem;
         font-weight: 600;
       }
-      .job-card.closed {
+      .job-badges {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 6px;
+      }
+      .priority-badge {
+        flex: 0 0 auto;
+        padding: 4px 9px;
+        border: 1px solid #f1d39a;
+        border-radius: 99px;
+        background: #fff8e8;
+        color: #8a5a00;
+        font-size: 0.7rem;
+        font-weight: 600;
+      }
+      .priority-badge.hot {
+        border-color: #f4b2c5;
+        background: #fff0f4;
+        color: #b4234d;
+      }      .job-card.closed {
         filter: grayscale(1);
         opacity: 0.78;
         padding: 12px 14px;
         box-shadow: none;
+      }
+      .job-card.closed .priority-badge {
+        display: none;
       }
       .job-card.closed .status {
         border-color: #a7a7a7;
@@ -625,6 +645,14 @@
               <option value="">All role areas</option>
             </select>
           </div>
+          <div class="field">
+            <label for="priorityFilter">Priority</label>
+            <select id="priorityFilter">
+              <option value="">All priorities</option>
+              <option value="hot">Hot jobs</option>
+              <option value="warm">Warm jobs</option>
+            </select>
+          </div>
         </div>
       </section>
 
@@ -683,6 +711,7 @@
         skills: ["Retail banking", "Customer acquisition", "Portfolio management"],
         maxEarn: "₹[total payout cap]",
         commissionRate: 5, // Edit this percentage for the opening
+        priority: "hot", // Use "warm" or omit for Warm Jobs
         perJoiningReward: "₹[amount per joining]",
         status: "open", // Use "closed" to show this role as closed
         jdUrl: "jds/TH-001-relationship-manager.pdf",
@@ -690,8 +719,9 @@
       }
     */
       const openings = [
-        {
+         {
           id: "TH-001",
+          priority: "hot",
           title: "Relationship Manager",
           client: "Motilal Oswal Home Finance",
           location: "Hyderabad",
@@ -709,6 +739,29 @@
           perJoiningReward: "",
           status: "open",
           jdUrl: "./jds/JD_RM-MOTILAL.pdf",
+          candidateFormUrl:
+            "https://docs.google.com/forms/d/e/1FAIpQLSffv-FgQqr-mt-ZYmuiT0ZHZgBoCDQq0c7-abHm6GJZ-0A72g/viewform?usp=publish-editor",
+        },
+        {
+          id: "TH-227",
+          priority: "hot",
+          title: "Sales Manager - Business LAP",
+          client: " Godrej Capital",
+          location: "Bharuch, Jamnagar, Vadodara, Gandhidham, Raipur, Rajkot, Mumbai, Nagpur",
+          function: "Sales & Relationship",
+          experience: "•	Minimum 2 years and maximum 8 years of relevant experience",
+          salary: "₹₹8-9 LPA",
+          vacancies: 8,
+          updated: "2026-10-26",
+          summary:
+            "",
+          skills: ["LAP", "Customer acquisition"],
+          maxEarn:
+            "13500/-",
+          commissionRate: 1.5,
+          perJoiningReward: "",
+          status: "open",
+          jdUrl: "./jds/TH-227.pdf",
           candidateFormUrl:
             "https://docs.google.com/forms/d/e/1FAIpQLSffv-FgQqr-mt-ZYmuiT0ZHZgBoCDQq0c7-abHm6GJZ-0A72g/viewform?usp=publish-editor",
         },
@@ -735,6 +788,7 @@
         },
         {
           id: "TH-240",
+          priority: "hot",
           title: "Senior sales manager ",
           client: "Godrej Capital",
           location:"Bengaluru, Chandigarh ",
@@ -770,13 +824,14 @@
           maxEarn: "₹ 14250/-",
           commissionRate: 1.5,
           perJoiningReward: "",
-          status: "open",
+          status: "Closed",
           jdUrl: "./jds/JD_BRANCH MANAGER_GCLI.pdf",
           candidateFormUrl:
             "https://docs.google.com/forms/d/e/1FAIpQLSffv-FgQqr-mt-ZYmuiT0ZHZgBoCDQq0c7-abHm6GJZ-0A72g/viewform?usp=publish-editor",
         },
         {
           id: "TH-003",
+          priority: "hot",
           title: "Branch Sales Manager",
           client: "Motilal Oswal Home Finance",
           location: "Hyderabad",
@@ -863,6 +918,7 @@
         },
         {
           id: "TH-241",
+          priority: "hot",
           title: "Sales Manager - Personal Loan",
           client: "SMFG Credit",
           location: "Ahmedabad, Rajkot",
@@ -884,6 +940,7 @@
         },
         {
           id: "TH-220",
+          priority: "hot",
           title: "Sales Manager - Business LAP",
           client: "Godrej Capital",
           location:
@@ -948,6 +1005,7 @@
         },
         {
           id: "TH-233",
+          priority: "hot",
           title: "Sales Manager - Personal Loan",
           client: "SMFG India",
           location: "Mumbai, Kalyan, Thane, Vashi, Andheri",
@@ -1012,16 +1070,21 @@
           jdUrl: "./jds/.pdf",
           candidateFormUrl:
             "https://docs.google.com/forms/d/e/1FAIpQLSffv-FgQqr-mt-ZYmuiT0ZHZgBoCDQq0c7-abHm6GJZ-0A72g/viewform?usp=publish-editor",
-        },
+        }
       ];
 
       const jobGrid = document.getElementById("jobGrid");
       const searchInput = document.getElementById("searchInput");
       const cityFilter = document.getElementById("cityFilter");
       const functionFilter = document.getElementById("functionFilter");
+      const priorityFilter = document.getElementById("priorityFilter");
       const resultsCount = document.getElementById("resultsCount");
 
-      function escapeHtml(value) {
+      function jobPriority(job) {
+        return String(job.priority || "warm").trim().toLowerCase() === "hot"
+          ? "hot"
+          : "warm";
+      }      function escapeHtml(value) {
         return String(value ?? "").replace(
           /[&<>"']/g,
           (char) =>
@@ -1070,6 +1133,7 @@
           String(job.status || "open")
             .trim()
             .toLowerCase() === "closed";
+        const priority = jobPriority(job);
         const commission = job.maxEarn
           ? `<div class="commission-panel" aria-label="Recruiter commission"><div class="commission-main"><span class="commission-label">Max earn</span><strong class="commission-amount">${escapeHtml(job.maxEarn)}</strong></div>${Number.isFinite(Number(job.commissionRate)) && Number(job.commissionRate) > 0 ? `<p class="commission-details">· ${escapeHtml(job.commissionRate)}% per candidate placed</p>` : ""}</div>`
           : "";
@@ -1090,7 +1154,7 @@
         <article class="job-card${isClosed ? " closed" : ""}" id="${escapeHtml(job.id)}">
           <div class="job-top">
             <div><p class="job-code">${escapeHtml(job.id)}</p><h3>${escapeHtml(job.title)}</h3></div>
-            <span class="status">${isClosed ? "Position Closed" : "Active"}</span>
+            <div class="job-badges"><span class="status">${isClosed ? "Position Closed" : "Active"}</span>${!isClosed ? `<span class="priority-badge ${priority}">${priority === "hot" ? "Hot" : "Warm"}</span>` : ""}</div>
           </div>
           ${job.client ? `<p class="client-line">${escapeHtml(job.client)}</p>` : ""}
           ${commission}
@@ -1108,6 +1172,7 @@
         const query = searchInput.value.trim().toLowerCase();
         const city = cityFilter.value;
         const area = functionFilter.value;
+        const priority = priorityFilter.value;
         const filtered = openings.filter((job) => {
           const searchable = [
             job.id,
@@ -1124,7 +1189,8 @@
           return (
             (!query || searchable.includes(query)) &&
             (!city || job.location === city) &&
-            (!area || job.function === area)
+            (!area || job.function === area) &&
+            (!priority || jobPriority(job) === priority)
           );
         });
         resultsCount.textContent = `${filtered.length} position${filtered.length === 1 ? "" : "s"}`;
@@ -1134,27 +1200,32 @@
               .trim()
               .toLowerCase() !== "closed",
         );
+        const hot = active.filter((job) => jobPriority(job) === "hot");
+        const warm = active.filter((job) => jobPriority(job) === "warm");
         const closed = filtered.filter(
           (job) =>
             String(job.status || "open")
               .trim()
               .toLowerCase() === "closed",
         );
-        const activeSection = active.length
-          ? `<h3 class="job-section-label">Active positions</h3>${active.map(jobCard).join("")}`
+        const hotSection = hot.length
+          ? `<h3 class="job-section-label">🔥 Hot Jobs</h3>${hot.map(jobCard).join("")}`
+          : "";
+        const warmSection = warm.length
+          ? `<h3 class="job-section-label">🌤️ Warm Jobs</h3>${warm.map(jobCard).join("")}`
           : "";
         const closedSection = closed.length
           ? `<h3 class="job-section-label">Closed positions</h3>${closed.map(jobCard).join("")}`
           : "";
         jobGrid.innerHTML = filtered.length
-          ? activeSection + closedSection
+          ? hotSection + warmSection + closedSection
           : `<div class="empty-state"><h3>${openings.length ? "No matching positions" : "Open positions will appear here"}</h3><p>${openings.length ? "Try another search or clear a filter." : "Please check back for current BFSI requirements. Contact the TalentHub team if you need assistance."}</p></div>`;
       }
       populateFilters();
-      [searchInput, cityFilter, functionFilter].forEach((control) =>
+      [searchInput, cityFilter, functionFilter, priorityFilter].forEach((control) =>
         control.addEventListener("input", renderJobs),
       );
-      [cityFilter, functionFilter].forEach((control) =>
+      [cityFilter, functionFilter, priorityFilter].forEach((control) =>
         control.addEventListener("change", renderJobs),
       );
       document.getElementById("year").textContent = new Date().getFullYear();
@@ -1162,3 +1233,5 @@
     </script>
   </body>
 </html>
+
+
